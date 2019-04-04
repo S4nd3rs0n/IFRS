@@ -1,14 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package projeto;
 
-/**
- *
- * @author coelho
- */
 public class SetorEnsino {
 
     private Curso cursos[];
@@ -20,8 +11,8 @@ public class SetorEnsino {
         for (int i = 0; i < professores.length; i++) {
             if (professores[i] != null) {
                 professores[i] = new Professor();
-                professores[i].siape = siape;
-                professores[i].nome = nome;
+                professores[i].setSiape(siape);
+                professores[i].setNome(nome);
                 return true;
             }
         }
@@ -30,7 +21,7 @@ public class SetorEnsino {
 
     public boolean demitirProfessor(long siape) {
         for (int i = 0; i < professores.length; i++) {
-            if (professores[i] != null && professores[i].siape == siape) {
+            if (professores[i] != null && professores[i].getSiape() == siape) {
                 professores[i] = null;
                 return true;
             }
@@ -81,6 +72,5 @@ public class SetorEnsino {
         this.diretor = diretor;
         this.coordenador = coordenador;
     }
-    
-    
+
 }

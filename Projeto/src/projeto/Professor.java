@@ -2,9 +2,9 @@ package projeto;
 
 public class Professor {
 
-    String nome;
-    String areas[];
-    long siape;
+    private String nome;
+    private String areas[];
+    private long siape;
 
     //getset Nome
     public String getNome() {
