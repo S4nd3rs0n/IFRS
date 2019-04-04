@@ -2,11 +2,11 @@ package projeto;
 
 public class Aluno {
 
-    String nome;
-    String curso;
-    int anoIngresso;
-    boolean ehFormado;
-    long matricula;
+    private String nome;
+    private Curso curso;
+    private int anoIngresso;
+    private boolean ehFormado;
+    private long matricula;
 
     //getset Nome
     public String getNome() {
@@ -18,20 +18,20 @@ public class Aluno {
     }
 
     //getset Curso
-    public String getCurso() {
+    public Curso getCurso() {
         return curso;
     }
 
-    public void setCurso(String curso) {
+    public void setCurso(Curso curso) {
         this.curso = curso;
     }
 
     //getset anoIngresso
-    public int getanoIngresso() {
+    public int getAnoIngresso() {
         return anoIngresso;
     }
 
-    public void setanoIngresso(int anoIngresso) {
+    public void setAnoIngresso(int anoIngresso) {
         this.anoIngresso = anoIngresso;
     }
 
@@ -45,22 +45,22 @@ public class Aluno {
     }
 
     //getset Matricula
-    public long getmatricula() {
+    public long getMatricula() {
         return matricula;
     }
 
-    public void setmatricula(long matricula) {
+    public void setMatricula(long matricula) {
         this.matricula = matricula;
     }
 
-    String verificaStatus() {
+    public String verificaStatus() {
         if (!ehFormado) {
             return "O aluno ainda não completou o curso.";
         }
         return "O aluno ingressou no ano " + anoIngresso + " e se formou.";
     }
 
-    long obtemMatricula() {
+    public long obtemMatricula() {
         return matricula;
     }
 }
