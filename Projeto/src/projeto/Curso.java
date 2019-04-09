@@ -5,7 +5,9 @@ public class Curso {
     private String nome;
     private String ppc;
     private Disciplina disciplinas[];
-
+    public Curso(String nome){
+        this.nome = nome;
+    }
     public boolean novaDisciplina(String nome, int ano, String professor) {
         for (int i = 0; i < disciplinas.length; i++) {
             if (disciplinas[i] != null) {

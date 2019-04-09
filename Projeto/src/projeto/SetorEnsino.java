@@ -4,12 +4,13 @@ public class SetorEnsino {
 
     private Curso cursos[];
     private Professor professores[];
+    private Aluno alunos[];
     private String diretor;
     private String coordenador;
 
     public boolean novoProfessor(String nome, long siape) {
         for (int i = 0; i < professores.length; i++) {
-            if (professores[i] != null) {
+            if (professores[i] == null) {
                 professores[i] = new Professor();
                 professores[i].setSiape(siape);
                 professores[i].setNome(nome);
@@ -17,6 +18,20 @@ public class SetorEnsino {
             }
         }
         return false;
+    }
+    public Aluno novoAluno(String nome, Curso curso, int anoIngresso, boolean ehFormado, long matricula){
+        for (int i = 0; i < alunos.length; i++) {
+            if (alunos[i] == null) {
+                alunos[i] = new Aluno();
+                alunos[i].setNome(nome);
+                alunos[i].setCurso(curso);
+                alunos[i].setAnoIngresso(anoIngresso);
+                alunos[i].setehFormado(ehFormado);
+                alunos[i].setMatricula(matricula);
+                return alunos[i];
+            }
+        }
+        return null;
     }
 
     public boolean demitirProfessor(long siape) {
@@ -59,6 +74,14 @@ public class SetorEnsino {
 
     public void setCoordenador(String coordenador) {
         this.coordenador = coordenador;
+    }
+
+    public Aluno[] getAlunos() {
+        return alunos;
+    }
+
+    public void setAlunos(Aluno[] alunos) {
+        this.alunos = alunos;
     }
 
     public SetorEnsino(Curso[] cursos, Professor[] professores, String diretor, String coordenador) {

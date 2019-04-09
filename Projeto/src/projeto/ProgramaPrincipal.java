@@ -3,24 +3,44 @@ package projeto;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Scanner;
 
-/**
- *
- * @author coelho
- */
 public class ProgramaPrincipal {
 
     public static void main(String[] args) throws IOException {
-        Aluno []alunos = new Aluno[1000];
-        Professor []professores = new Professor[60];
+        Scanner s = new Scanner(System.in);
         SetorEnsino ensino = new SetorEnsino("Pâmela Perini", "Vitor Valente");
-        int opcao = 4;
-        
+        int opcao;
+
         do {
             opcao = menu("MENU 1: \n [1] Aluno \n [2] Professor \n [3] Setor de Ensino \n [4] Sair");
             switch (opcao) {
                 case 1:
-                    menu_alunos("MENU 2: \n [1] Ver Cursos [2] Ver notas");
+                    System.out.print("Digite sua matricula: ");
+                    long matricula = s.nextLong();
+                    Aluno[] alunos = ensino.getAlunos();
+                    Aluno a = null;
+
+                    for (int i = 0; i < alunos.length; i++) {
+                        if (alunos[i].getMatricula() == matricula) {
+                            a = alunos[i];
+                        }
+                    }
+                    if (a == null) {
+                        System.out.print("Digite o nome do Aluno: ");
+                        String nome = s.next();
+                        System.out.print("Digite o nome do Curso do(a)" + nome);
+                        Curso curso = new Curso(s.next());
+                        System.out.print("Digite o ano de ingresso do(a)" + nome);
+                        int anoIngresso = s.nextInt();
+                        System.out.print("Aluno não formado");
+                        boolean ehFormado = false;
+                        a = ensino.novoAluno(nome, curso, anoIngresso, ehFormado, matricula);
+
+                    }
+                    
+                    menu_alunos("MENU 2: \n [1] Ver Cursos [2] Ver notas", a, ensino);
+                    
                     break;
                 case 2:
                     menu_professor("MENU 2: \n [1] Dar Notas de uma disciplina [2] Alterar uma nota [3] Adicionar Área [4] Remover Área");
@@ -39,8 +59,19 @@ public class ProgramaPrincipal {
         return opcao;
     }
 
-    private static void menu_alunos(String opcoes) throws IOException {
+    private static void menu_alunos(String opcoes, Aluno a, SetorEnsino ensino) throws IOException {
         int opcao = menu(opcoes);
+        if ((opcao != 1) && (opcao != 2)) {
+            System.err.println("ERROR");
+        } else {
+            if (opcao == 1) {
+                Curso[] cursos = ensino.getCursos();
+                for (int i = 0; i < cursos.length ; i++) {
+                    System.out.println(cursos[i]);
+                }
+            }
+        }
+        
     }
 
     private static void menu_professor(String opcoes) throws IOException {
