@@ -89,11 +89,13 @@ public class SetorEnsino {
         this.professores = professores;
         this.diretor = diretor;
         this.coordenador = coordenador;
+        this.alunos = new Aluno[500];
     }
 
     public SetorEnsino(String diretor, String coordenador) {
         this.diretor = diretor;
         this.coordenador = coordenador;
+        this.alunos = new Aluno[500];
     }
 
 }

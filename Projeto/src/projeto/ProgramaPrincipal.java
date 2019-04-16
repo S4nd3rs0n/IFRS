@@ -3,12 +3,11 @@ package projeto;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Scanner;
 
 public class ProgramaPrincipal {
 
     public static void main(String[] args) throws IOException {
-        Scanner s = new Scanner(System.in);
+        BufferedReader s = new BufferedReader(new InputStreamReader(System.in));
         SetorEnsino ensino = new SetorEnsino("Pâmela Perini", "Vitor Valente");
         int opcao;
 
@@ -17,30 +16,30 @@ public class ProgramaPrincipal {
             switch (opcao) {
                 case 1:
                     System.out.print("Digite sua matricula: ");
-                    long matricula = s.nextLong();
+                    long matricula = Long.parseLong(s.readLine());
                     Aluno[] alunos = ensino.getAlunos();
                     Aluno a = null;
 
                     for (int i = 0; i < alunos.length; i++) {
-                        if (alunos[i].getMatricula() == matricula) {
+                        if (alunos[i] != null && alunos[i].getMatricula() == matricula) {
                             a = alunos[i];
                         }
                     }
                     if (a == null) {
                         System.out.print("Digite o nome do Aluno: ");
-                        String nome = s.next();
-                        System.out.print("Digite o nome do Curso do(a)" + nome);
-                        Curso curso = new Curso(s.next());
-                        System.out.print("Digite o ano de ingresso do(a)" + nome);
-                        int anoIngresso = s.nextInt();
+                        String nome = s.readLine();
+                        System.out.print("Digite o nome do Curso do(a) " + nome + ": ");
+                        Curso curso = new Curso(s.readLine());
+                        System.out.print("Digite o ano de ingresso do(a) " + nome + ": ");
+                        int anoIngresso = Integer.parseInt(s.readLine());
                         System.out.print("Aluno não formado");
                         boolean ehFormado = false;
                         a = ensino.novoAluno(nome, curso, anoIngresso, ehFormado, matricula);
 
                     }
-                    
-                    menu_alunos("MENU 2: \n [1] Ver Cursos [2] Ver notas", a, ensino);
-                    
+
+                    menu_alunos("\nMENU 2: \n [1] Ver Cursos [2] Ver notas", a, ensino);
+
                     break;
                 case 2:
                     menu_professor("MENU 2: \n [1] Dar Notas de uma disciplina [2] Alterar uma nota [3] Adicionar Área [4] Remover Área");
@@ -66,12 +65,12 @@ public class ProgramaPrincipal {
         } else {
             if (opcao == 1) {
                 Curso[] cursos = ensino.getCursos();
-                for (int i = 0; i < cursos.length ; i++) {
+                for (int i = 0; i < cursos.length; i++) {
                     System.out.println(cursos[i]);
                 }
             }
         }
-        
+
     }
 
     private static void menu_professor(String opcoes) throws IOException {
