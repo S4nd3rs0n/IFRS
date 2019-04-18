@@ -2,7 +2,8 @@ package projeto;
 
 public class SetorEnsino {
 
-    private Curso cursos[];
+    private static final int MAX_CURSO  = 10;
+    private Curso cursos[] = new Curso[MAX_CURSO];
     private Professor professores[];
     private Aluno alunos[];
     private String diretor;
@@ -19,7 +20,8 @@ public class SetorEnsino {
         }
         return false;
     }
-    public Aluno novoAluno(String nome, Curso curso, int anoIngresso, boolean ehFormado, long matricula){
+
+    public Aluno novoAluno(String nome, Curso curso, int anoIngresso, boolean ehFormado, long matricula) {
         for (int i = 0; i < alunos.length; i++) {
             if (alunos[i] == null) {
                 alunos[i] = new Aluno();

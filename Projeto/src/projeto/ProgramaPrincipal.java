@@ -6,9 +6,11 @@ import java.io.InputStreamReader;
 
 public class ProgramaPrincipal {
 
+    private static final BufferedReader s = new BufferedReader(new InputStreamReader(System.in));
+    private static final SetorEnsino ensino = new SetorEnsino("Pâmela Perini", "Vitor Valente");
+
     public static void main(String[] args) throws IOException {
-        BufferedReader s = new BufferedReader(new InputStreamReader(System.in));
-        SetorEnsino ensino = new SetorEnsino("Pâmela Perini", "Vitor Valente");
+
         int opcao;
 
         do {
@@ -66,8 +68,13 @@ public class ProgramaPrincipal {
             if (opcao == 1) {
                 Curso[] cursos = ensino.getCursos();
                 for (int i = 0; i < cursos.length; i++) {
-                    System.out.println(cursos[i]);
+                    if (cursos[i] == null) {
+                        System.err.println("Deu Errado!");
+                    } else {
+                        System.out.println(cursos[i].getNome());
+                    }
                 }
+
             }
         }
 
